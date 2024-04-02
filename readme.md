@@ -26,7 +26,7 @@
 # 3. 실행하기
 - 해당 디렉토리로 감
 - 마우스 오른쪽 버트 "터미널에서 열기" 또는 "Windows PowerShell"로 열면 됨
-- <span style="color:#ffd33d">"python getCourse.py" (엔터)</span>
+- <span style="color:red">"python getCourse.py" (엔터)</span>
 - 실행이 끝날 때까지 터미널을 종료하시면 안되요.
 
 
