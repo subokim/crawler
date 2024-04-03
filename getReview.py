@@ -1,10 +1,11 @@
 from bs4 import BeautifulSoup as bs
-import requests
-import time
-import json
+import requests, time, json, math, os, datetime
 
 global no
 no = 0
+
+target_site='https://www.abcd.com'
+url = target_site + '/community/reviews'
 
 def chk_json_null(json, key):
     try:
@@ -31,16 +32,20 @@ def getReviewList():
             w_lines = w_lines+str(no)+'|'+'error'+'\n'
     return w_lines
 
-url_list = [('https://www.inflearn.com/community/reviews',1,999),
-           ('https://www.inflearn.com/community/reviews',1000,1999),
-           ('https://www.inflearn.com/community/reviews',2000,2999),
-           ('https://www.inflearn.com/community/reviews',3000,3999),
-           ('https://www.inflearn.com/community/reviews',4000,4999),
-           ('https://www.inflearn.com/community/reviews',5000,5999),
-           ('https://www.inflearn.com/community/reviews',6000,6600)]
+url_list = [(url,1,999),
+           (url,1000,1999),
+           (url,2000,2999),
+           (url,3000,3999),
+           (url,4000,4999),
+           (url,5000,5999),
+           (url,6000,6600)]
+
+current_working_directory = os.getcwd()
+file_name = current_working_directory + '/inf' + datetime.datetime.today().strftime('%m%d') + '.csv'
 
 for (url,first,last) in url_list:
-    fw = open("C:/workspace/crawler/r0328_"+str(first)+".csv", 'w', encoding='utf-8')
+    file_name = current_working_directory + '/inf' + datetime.datetime.today().strftime('%m%d') + '_' +str(first)+'.csv'
+    fw = open(file_name, 'w', encoding='utf-8')
     for i in range(first,last+1):
         new_url = url
         if i >= 2:

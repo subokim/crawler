@@ -1,11 +1,11 @@
 from bs4 import BeautifulSoup as bs
-import requests
-import time
-import json
-import math
+import requests, time, json, math, os, datetime
 
 global no
 no = 0
+
+target_site='https://www.abcd.com'
+url = target_site + '/courses/'
 
 def chk_json_null(json, key):
     try:
@@ -42,19 +42,23 @@ def getContentList(flag1):
             w_line = 'error'
     return w_lines
 
-url_list = [('https://www.inflearn.com/courses/it-programming',1,67,'pg'),
-('https://www.inflearn.com/courses/game-dev-all',1,9,'gm'),
-('https://www.inflearn.com/courses/data-science',1,15,'ds'),
-('https://www.inflearn.com/courses/artificial-intelligence',1,9,'ai'),
-('https://www.inflearn.com/courses/it',1,13,'it'),
-('https://www.inflearn.com/courses/business',1,25,'bz'),
-('https://www.inflearn.com/courses/hardware',1,4,'hw'),
-('https://www.inflearn.com/courses/design',1,16,'dn'),
-('https://www.inflearn.com/courses/academics',1,5,'ac'),
-('https://www.inflearn.com/courses/career',1,12,'ca'),
-('https://www.inflearn.com/courses/life',1,7,'lf')]
+url_list = [(url+'it-programming',1,67,'pg'),
+(url+'game-dev-all',1,9,'gm'),
+(url+'data-science',1,15,'ds'),
+(url+'artificial-intelligence',1,9,'ai'),
+(url+'it',1,13,'it'),
+(url+'business',1,25,'bz'),
+(url+'hardware',1,4,'hw'),
+(url+'design',1,16,'dn'),
+(url+'academics',1,5,'ac'),
+(url+'career',1,12,'ca'),
+(url+'life',1,7,'lf')]
 
-fw = open("C:/workspace/crawler/inf0328.csv", 'w', encoding='utf-8')
+
+current_working_directory = os.getcwd()
+file_name = current_working_directory + '/all' + datetime.datetime.today().strftime('%m%d') + '.csv'
+
+fw = open(file_name, 'w', encoding='utf-8')
 for (url,first,last,flag) in url_list:
     for i in range(first,last+1):
         new_url = url
