@@ -41,10 +41,10 @@ url_list = [(url,1,999),
            (url,6000,6600)]
 
 current_working_directory = os.getcwd()
-file_name = current_working_directory + '/inf' + datetime.datetime.today().strftime('%m%d') + '.csv'
+file_name = current_working_directory + '/review' + datetime.datetime.today().strftime('%m%d') + '.csv'
 
 for (url,first,last) in url_list:
-    file_name = current_working_directory + '/inf' + datetime.datetime.today().strftime('%m%d') + '_' +str(first)+'.csv'
+    file_name = current_working_directory + '/review' + datetime.datetime.today().strftime('%m%d') + '_' +str(first)+'.csv'
     fw = open(file_name, 'w', encoding='utf-8')
     for i in range(first,last+1):
         new_url = url
